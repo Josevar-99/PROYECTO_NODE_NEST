@@ -28,4 +28,20 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
   controllers: [AppController],
   providers: [AppService],
 })
+
+// @Module({
+//   imports:[
+//     TypeOrmModule.forRoot({
+//       type:'postgres',
+//       host:'localhost',
+//       port:5432,
+//       username:'postgres',
+//       password:'admin123',
+//       database: 'Restaurant',
+//       entities:[]//dentro de este espacio se coloca el nombre de la entidad a crear,
+//       synchronize:true,
+//     }),
+//     //aqui se coloca el nombre del modulo traido 
+//   ]
+// })
 export class AppModule { }

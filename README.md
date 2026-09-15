@@ -1,114 +1,204 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Initial Setup Nest
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Proyecto base para iniciar una API con NestJS, TypeScript, configuración global, Swagger y observabilidad con Nest Observe.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Descripción
 
-## Description
+Este repositorio es una plantilla minimalista para crear aplicaciones backend con NestJS. Ya viene preparada con:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Estructura base en módulos
+- Configuración de variables de entorno
+- Documentación Swagger
+- Integración con observabilidad de Nest
+- Pruebas unitarias y e2e
+- Soporte para PostgreSQL con TypeORM (comentado y listo para activar)
 
-## Project setup
+## Tecnologías
 
-```bash
-$ npm install
-```
+- Node.js
+- NestJS 12
+- TypeScript
+- Swagger
+- PostgreSQL + TypeORM
+- Vitest
+- Zod
+- ESLint con Oxlint
 
-## Compile and run the project
+## Requisitos previos
 
-```bash
-# development
-$ npm run start
+Antes de iniciar, asegúrate de tener instalado:
 
-# watch mode
-$ npm run start:dev
+- Node.js 20 o superior
+- npm
+- PostgreSQL (si vas a activar TypeORM)
 
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
+## Instalación
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
+## Variables de entorno
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+La app ya incluye configuración global de entorno con `@nestjs/config`. Puedes crear un archivo `.env` en la raíz del proyecto para definir tus variables locales.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Ejemplo:
+
+```env
+PORT=3000
+```
+
+> Actualmente la validación de variables está vacía en `src/config/env.validation.schema.ts`, por lo que puedes extenderla según tus necesidades.
+
+## Ejecutar la aplicación
+
+### Modo desarrollo
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm run start
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Modo watch
 
-## Observability
+```bash
+npm run start:dev
+```
 
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
+### Modo debug
 
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
+```bash
+npm run start:debug
+```
 
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
+### Producción
 
-## Resources
+```bash
+npm run build
+npm run start:prod
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+La aplicación corre por defecto en:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observer](https://observer.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```text
+http://localhost:3000
+```
 
-## Support
+## Documentación API
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Swagger está configurado para exponerse en:
 
-## Stay in touch
+```text
+http://localhost:3000/api/docs
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Estructura del proyecto
 
-## License
+```text
+src/
+├── app.controller.ts
+├── app.module.ts
+├── app.service.ts
+├── main.ts
+├── config/
+│   ├── env.config.ts
+│   ├── env.validation.schema.ts
+│   ├── index.ts
+│   └── swagger.config.ts
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+test/
+├── app.e2e-spec.ts
+```
+
+## Scripts disponibles
+
+```bash
+npm run build
+npm run deploy
+npm run format
+npm run start
+npm run start:dev
+npm run start:debug
+npm run start:prod
+npm run lint
+npm run test
+npm run test:watch
+npm run test:cov
+npm run test:debug
+npm run test:e2e
+```
+
+## Pruebas
+
+### Ejecutar pruebas unitarias
+
+```bash
+npm run test
+```
+
+### Ejecutar pruebas e2e
+
+```bash
+npm run test:e2e
+```
+
+### Cobertura
+
+```bash
+npm run test:cov
+```
+
+## Observabilidad
+
+El proyecto ya integra Nest Observe a través de `createObserveModule()`, lo cual permite añadir trazas, métricas y telemetría sin necesidad de una configuración compleja.
+
+## Base de datos
+
+En `src/app.module.ts` existe un bloque comentado para configurar TypeORM con PostgreSQL. Puedes descomentarlo y completar los datos de conexión según tu entorno.
+
+Ejemplo de configuración base:
+
+```ts
+TypeOrmModule.forRoot({
+  type: 'postgres',
+  host: 'localhost',
+  port: 5432,
+  username: 'postgres',
+  password: 'admin123',
+  database: 'Restaurant',
+  entities: [],
+  synchronize: true,
+})
+```
+
+## Endpoint base
+
+La app incluye un controlador inicial que responde con:
+
+```http
+GET /
+```
+
+Respuesta:
+
+```text
+Hello World!
+```
+
+## Personalización recomendada
+
+Antes de continuar con el desarrollo, se recomienda:
+
+1. Definir un nombre real del proyecto en `package.json`
+2. Completar la validación de variables de entorno
+3. Configurar la base de datos real
+4. Crear módulos específicos por dominio
+5. Agregar autenticación y validaciones de entrada
+6. Definir una estructura de DTOs y entidades
+
+## Licencia
+
+Este proyecto está bajo la licencia del autor original de la plantilla. Si necesitas cambiarla, puedes editar el campo `license` en el archivo `package.json`.
+
+## Nota
+
+Este proyecto funciona como una base inicial para levantar una API NestJS con buenas prácticas de arranque y configuración, lista para evolucionar según tus necesidades.
